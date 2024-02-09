@@ -1,0 +1,57 @@
+import React, { useState } from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa'; // Import the hamburger icon
+import logo from '../assets/logo.png';
+
+const Nav = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
+  return (
+    <div className='p-6'>
+      <div className='flex justify-between items-center'>
+        <div>
+          <img src={logo} className='h-12 md:w-40 w-[150px]' alt='Logo' />
+        </div>
+        <div className='hidden md:flex md:space-x-8 font-sans'>
+          <a href="/">Home</a>
+          <a href="/places">Explore Places</a>
+          <a href="/photogallery">Photo Gallery</a>
+          <a href="/allblog">Latest Blogs</a>
+          <a href="/categories">Categories</a>
+          <a href="/worldmap">World Map</a>
+          <a href="/signup">Signup</a>
+        </div>
+        <div className='md:hidden'>
+        
+        {isNavOpen ? (
+          <FaTimes onClick={toggleNav} className='cursor-pointer' />
+        ) : (
+          <FaBars onClick={toggleNav} className='cursor-pointer' />
+        )}
+        </div>
+
+      </div>
+
+      {/* Responsive Navigation */}
+      {isNavOpen && (
+        <div className='md:hidden mt-2'>
+          <div className='flex flex-col space-y-2'>
+            <div>Home</div>
+            <a href="/places">Explore Places</a>
+            <a href="/photogallery">Photo Gallery</a>
+            <div>Latest Blogs</div>
+            <a>Categories</a>
+            <a href="/signup">Signup</a>
+          </div>
+        </div>
+        
+      )}
+      
+    </div>
+  );
+};
+
+export default Nav;
